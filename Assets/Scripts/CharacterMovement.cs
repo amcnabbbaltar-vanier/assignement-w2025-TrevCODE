@@ -14,7 +14,8 @@ public class CharacterMovement : MonoBehaviour
     [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 5f;        // Jump force applied to the character
     [SerializeField] private float groundCheckDistance = 1.1f; // Distance to check for ground contact (Raycast)
-
+    [SerializeField] private int maxJumps = 2; // Allow up to 2 jumps
+    private int jumpCount = 0;  // Start jumpCount to zero and I will reset it 
     // ============================== Modifiable from other scripts ==================
     public float speedMultiplier = 1.0f; // Additional multiplier for character speed ( WINK WINK )
 
@@ -37,9 +38,10 @@ public class CharacterMovement : MonoBehaviour
     /// Checks if the character is currently grounded using a Raycast.
     /// If false, the character is in the air.
     /// </summary>
-    public bool IsGrounded => 
-        Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, groundCheckDistance);
-
+public bool IsGrounded
+{
+    get => Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, groundCheckDistance);
+}
     /// <summary>
     /// Checks if the player is currently holding the "Run" button.
     /// </summary>
@@ -120,6 +122,10 @@ public class CharacterMovement : MonoBehaviour
         HandleJump(); // Process jump input
         RotateCharacter(); // Rotate the character towards the movement direction
         MoveCharacter(); // Move the character using velocity-based movement
+        if (IsGrounded)
+        {
+            jumpCount = 0; // Reset jump count when I touch the ground
+        }
     }
 
     /// <summary>
@@ -157,11 +163,12 @@ public class CharacterMovement : MonoBehaviour
     private void HandleJump()
     {
         // Apply jump force only if jump was requested and the character is grounded
-        if (jumpRequest && IsGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Apply force upwards
-            jumpRequest = false; // Reset jump request after applying jump
-        }
+    if (jumpRequest && jumpCount < maxJumps)
+    {
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z); // Reset Y velocity for consistent jump height
+        jumpRequest = false; // Reset jump request
+        jumpCount++; // Increase jump count
+    }
     }
 
     /// <summary>

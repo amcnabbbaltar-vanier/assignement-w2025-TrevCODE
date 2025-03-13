@@ -11,5 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/LevelOne.unity
+    guid: f7c0f3dd170949d4b87d15d02fe8f812
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: c17ba1fa3606db84085d8e1a04ce8dca
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
