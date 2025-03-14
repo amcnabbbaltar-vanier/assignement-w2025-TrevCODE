@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -21,12 +22,13 @@ public class PlayerHealth : MonoBehaviour
         healthBar.value = currentHealth;
         if (currentHealth <= 0)
         {
-            Die();
+            RestartLevel();
         }
     }
-        void Die()
+
+    private void RestartLevel()
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload current scene
     }
 
 
