@@ -8,7 +8,7 @@ public class Damage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Ensure Player has the "Player" tag
+        if (other.CompareTag("Player")) 
         {
             playerOnFloor = true;
             StartCoroutine(DamagePlayer(other.GetComponent<PlayerHealth>()));

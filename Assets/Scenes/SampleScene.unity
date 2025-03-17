@@ -1847,6 +1847,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1345352641}
+    - target: {fileID: 5817728357655252301, guid: 0d7eb4c413a14a44ea949082b916df05, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2114,11 +2118,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6640230529438959611, guid: b10a26fc7e8b56a43858abda0cd36c3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.14884
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6640230529438959611, guid: b10a26fc7e8b56a43858abda0cd36c3e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.8995938
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 6640230529438959611, guid: b10a26fc7e8b56a43858abda0cd36c3e, type: 3}
       propertyPath: m_LocalRotation.w

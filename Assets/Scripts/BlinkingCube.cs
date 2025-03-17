@@ -6,13 +6,13 @@ public class BlinkingCube : MonoBehaviour
     [SerializeField] private float disappearTime = 5f; // Time before disappearing
     [SerializeField] private float reappearTime = 2f;  // Time before reappearing
 
-    private Renderer cubeRenderer; // Reference to the cube's Renderer
-    private Collider cubeCollider; // Reference to the cube's Collider
+    private Renderer cubeRenderer; 
+    private Collider cubeCollider;
 
     private void Start()
     {
-        cubeRenderer = GetComponent<Renderer>(); // Get the Renderer component
-        cubeCollider = GetComponent<Collider>(); // Get the Collider component
+        cubeRenderer = GetComponent<Renderer>(); 
+        cubeCollider = GetComponent<Collider>(); 
         StartCoroutine(DisappearAndReappear());
     }
 
@@ -20,11 +20,11 @@ public class BlinkingCube : MonoBehaviour
     {
         while (true) // Infinite loop to keep repeating
         {
-            yield return new WaitForSeconds(disappearTime); // Wait before disappearing
+            yield return new WaitForSeconds(disappearTime); 
             cubeRenderer.enabled = false; // Hide the cube
             cubeCollider.enabled = false; // Disable collisions
 
-            yield return new WaitForSeconds(reappearTime); // Wait before reappearing
+            yield return new WaitForSeconds(reappearTime); 
             cubeRenderer.enabled = true;  // Show the cube
             cubeCollider.enabled = true;  // Enable collisions
         }

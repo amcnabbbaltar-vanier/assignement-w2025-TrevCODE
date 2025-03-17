@@ -15,7 +15,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 5f;        // Jump force applied to the character
     [SerializeField] private float groundCheckDistance = 1.1f; // Distance to check for ground contact (Raycast)
     [SerializeField] private int maxJumps = 2; // Allow up to 2 jumps
-    private int jumpCount = 0;  // Start jumpCount to zero and I will reset it 
+    private bool hasDoubleJump = false;  // Start hasDoubleJump to false and it will disable double jump
+    private int jumpCount = 0;
     // ============================== Modifiable from other scripts ==================
     public float speedMultiplier = 1.0f; // Additional multiplier for character speed ( WINK WINK )
 
@@ -122,10 +123,6 @@ public bool IsGrounded
         HandleJump(); // Process jump input
         RotateCharacter(); // Rotate the character towards the movement direction
         MoveCharacter(); // Move the character using velocity-based movement
-        if (IsGrounded)
-        {
-            jumpCount = 0; // Reset jump count when I touch the ground
-        }
     }
 
     /// <summary>
@@ -162,13 +159,23 @@ public bool IsGrounded
     /// </summary>
     private void HandleJump()
     {
-        // Apply jump force only if jump was requested and the character is grounded
-    if (jumpRequest && jumpCount < maxJumps)
-    {
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z); // Reset Y velocity for consistent jump height
-        jumpRequest = false; // Reset jump request
-        jumpCount++; // Increase jump count
+        if (IsGrounded)
+        {
+            jumpCount = 0; // Reset jumps when on the ground
+        }
+
+        if (jumpRequest && (IsGrounded || (hasDoubleJump && jumpCount < maxJumps)))
+        {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z); 
+            jumpRequest = false;
+            jumpCount++; // Increase jump count
+        }
+
     }
+    
+        public void EnableDoubleJump(bool enable)
+    {
+        hasDoubleJump = enable; // Set double jump ability
     }
 
     /// <summary>

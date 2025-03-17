@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        FindScoreText(); // Find the score UI at the start
+        FindScoreText(); 
         FindTimerText();
         UpdateScoreUI();
     }
@@ -53,8 +53,8 @@ public class GameManager : MonoBehaviour
     }
         private void FindUIElements()
     {
-        GameObject scoreObj = GameObject.Find("ScoreText");  // Find the ScoreText GameObject
-        GameObject timerObj = GameObject.Find("TimerText");  // Find the TimerText GameObject
+        GameObject scoreObj = GameObject.Find("ScoreText");  
+        GameObject timerObj = GameObject.Find("TimerText");  
 
         if (scoreObj != null)
             scoreText = scoreObj.GetComponent<TextMeshProUGUI>();
@@ -109,7 +109,7 @@ private void Awake()
     }
     private void UpdateScoreUI()
     {
-        scoreText.text = "Score: " + Score.ToString(); // Update text with current score
+        scoreText.text = "Score: " + Score.ToString(); 
     }
     private void UpdateTimerUI()
     {
@@ -135,7 +135,7 @@ private void Awake()
     }
     private void FindUIAfterSceneLoad()
     {
-        scoreText = FindObjectOfType<TextMeshProUGUI>(); // Find new ScoreText in the new scene
+        scoreText = FindObjectOfType<TextMeshProUGUI>();
         UpdateScoreUI(); 
     }
 }

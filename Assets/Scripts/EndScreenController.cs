@@ -6,7 +6,7 @@ public class EndScreenController : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
       
@@ -19,7 +19,7 @@ public class EndScreenController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    // Update is called once per frame
+ 
     void Update()
     {
         
